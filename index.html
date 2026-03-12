@@ -8,11 +8,17 @@
   <body>
     <h2>User Form</h2>
     <form action="https://api.web3forms.com/submit" method="POST" id="form">
-      <input type="text" name="Name" placeholder="Name" required />
+      <input type="text" name="Name" placeholder="Name" id="Name" required />
       <br /><br />
-      <input type="email" name="Email" placeholder="Email" />
+      <input type="email" name="Email" id="Email" placeholder="Email" />
       <br /><br />
-      <input type="number" name="Contact" placeholder="Phone_Number" required />
+      <input
+        type="number"
+        name="Phone_Number"
+        id="Phone_Number"
+        placeholder="Phone_Number"
+        required
+      />
       <br /><br />
 
       <input type="hidden" name="form_name" value="Contact Details" />
@@ -32,5 +38,39 @@
       />
       <button>Submit</button>
     </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+      const SUPABASE_URL = "https://yyumrepmcmvdwzhzcreo.supabase.co";
+      const SUPABASE_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5dW1yZXBtY212ZHd6aHpjcmVvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzMzIwMjgsImV4cCI6MjA4ODkwODAyOH0.Cu-rP4n_5Y3cPFoomNMrdyaMeTO4btJjNtOlgiIferc";
+
+      const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+      document
+        .getElementById("form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const Name = document.getElementById("Name").value;
+          const Email = document.getElementById("Email").value;
+          const Phone_Number = document.getElementById("Phone_Number").value;
+
+          const { data, error } = await client.from("Contact").insert([
+            {
+              Name: Name,
+              Email: Email,
+              Phone_Number: Phone_Number,
+            },
+          ]);
+
+          if (error) {
+            alert("There is an error while sending message");
+            console.log(error);
+          } else {
+            alert("Your message was sent successfully!");
+          }
+        });
+    </script>
   </body>
 </html>
