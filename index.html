@@ -56,20 +56,13 @@
           const Email = document.getElementById("Email").value;
           const Phone_Number = document.getElementById("Phone_Number").value;
 
-          const { data, error } = await client.from("Contact").insert([
+          const data = await client.from("Contact").insert([
             {
               Name: Name,
               Email: Email,
               Phone_Number: Phone_Number,
             },
           ]);
-
-          if (error) {
-            alert("There is an error while sending message");
-            console.log(error);
-          } else {
-            alert("Your message was sent successfully!");
-          }
         });
     </script>
   </body>
