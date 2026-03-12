@@ -56,13 +56,17 @@
           const Email = document.getElementById("Email").value;
           const Phone_Number = document.getElementById("Phone_Number").value;
 
-          const data = await client.from("Contact").insert([
-            {
-              Name: Name,
-              Email: Email,
-              Phone_Number: Phone_Number,
-            },
-          ]);
+          await client
+            .from("Contact")
+            .insert([{ Name: Name, Email: Email, Phone_Number: Phone_Number }]);
+
+          //   const data = await client.from("Contact").insert([
+          //     {
+          //       Name: Name,
+          //       Email: Email,
+          //       Phone_Number: Phone_Number,
+          //     },
+          //   ]);
         });
     </script>
   </body>
