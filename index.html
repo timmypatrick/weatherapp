@@ -50,7 +50,7 @@
       document
         .getElementById("form")
         .addEventListener("submit", async function (e) {
-          e.preventDefault();
+          //   e.preventDefault();
 
           const Name = document.getElementById("Name").value;
           const Email = document.getElementById("Email").value;
@@ -59,14 +59,6 @@
           await client
             .from("Contact")
             .insert([{ Name: Name, Email: Email, Phone_Number: Phone_Number }]);
-
-          //   const data = await client.from("Contact").insert([
-          //     {
-          //       Name: Name,
-          //       Email: Email,
-          //       Phone_Number: Phone_Number,
-          //     },
-          //   ]);
         });
     </script>
   </body>
