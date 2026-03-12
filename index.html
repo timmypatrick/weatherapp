@@ -59,6 +59,8 @@
           await client
             .from("Contact")
             .insert([{ Name: Name, Email: Email, Phone_Number: Phone_Number }]);
+
+          document.getElementById("form").reset();
         });
     </script>
   </body>
